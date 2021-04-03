@@ -66,7 +66,7 @@ h2{
     <div>
         <p class="desc">
              <!-- {@html description}  html text -->
-             {@html description}
+             {description}
         </p>
     </div>
 </div>
