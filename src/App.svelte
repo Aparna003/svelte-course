@@ -2,6 +2,9 @@
 	import ContactCard from "./ContactCard.svelte";
 	export let name;
 	let age = 20;
+	let title="";
+	let des="";
+	let image="https://source.unsplash.com/random";
 
 	// let uppercaseName; is not required
 	$: uppercaseName = name.toUpperCase();
@@ -29,7 +32,14 @@
   
 	<!-- 2 way bind shortcut -->
 	  <input type="text" bind:value="{name}" />
-      <ContactCard/>
+	  <input type="text" bind:value="{title}" />
+	  <input type="text" bind:value="{image}" />
+	  <textarea rows="3" type="text" bind:value="{des}" />
+      <ContactCard 
+	  userName={name} 
+	  jobTitle={title} 
+	  description={des} 
+	  userImage={image} />
 	</main>
 
 <style>
