@@ -49,21 +49,20 @@
 		<input type="text" bind:value={jobTitle} id="jobTitle" />
 	</div>
 	<div class="form-control">
-		<label for="image">Image</label>
+		<label for="image">Image URL</label>
 		<input type="text" bind:value={userImage} id="image" />
 	</div>
 	<div class="form-control">
 		<label for="desc">Description</label>
 		<textarea rows="3" bind:value={description} id="desc" />
 	</div>
-	<div class="form-control">
-		<label for="image">Image</label>
-		<input type="text" bind:value={userImage} id="image" />
-	</div>
+	
 	<button on:click|preventDefault="{addContact}">Add contact card</button>
 </form>
 
-<button on:click="{deleteFirst}">Delete First</button>
+<button on:click="{(event)=>{
+    createdContact= createdContact.slice(1);
+}}">Delete First</button>
 <button on:click="{deleteLast}">Delete Last</button>
 
 
