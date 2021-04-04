@@ -36,6 +36,7 @@ img{
 .user-data{
     width: 80%;
     display: flex;
+    padding-left: 1rem;
     flex-direction: column;
     justify-content: center;
 }

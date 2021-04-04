@@ -5,8 +5,9 @@
 	let description="";
 	let userImage="https://source.unsplash.com/random";
     let formState='empty';
-	let createdContact=[];
-	function addContact(){
+	let createdContact=[]; 
+	function addContact(event){
+		//event.preventDefault();
 		if(
         userName.trim().length==0 ||
 		jobTitle.trim().length==0 ||
@@ -38,7 +39,7 @@
        
 </script>
 
-<div class="form">
+<form class="form">
 	<div class="form-control">
       <label for="userName">User Name</label>
 	  <input type="text" bind:value={userName} id="userName" />
@@ -59,9 +60,9 @@
 		<label for="image">Image</label>
 		<input type="text" bind:value={userImage} id="image" />
 	</div>
-	
-</div>
-<button on:click="{addContact}">Add contact card</button>
+	<button on:click|preventDefault="{addContact}">Add contact card</button>
+</form>
+
 <button on:click="{deleteFirst}">Delete First</button>
 <button on:click="{deleteLast}">Delete Last</button>
 
@@ -87,6 +88,7 @@ userImage={contact.image}/> -->
 	.form {
 		width: 30rem;
 		max-width: 100%;
+		margin: 1rem 0;
 	}
 	button{
 	background-color: #e40763;
