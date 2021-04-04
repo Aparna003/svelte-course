@@ -1,13 +1,14 @@
 <script>
 	import ContactCard from "./ContactCard.svelte";
-	export let userName;
+    let userName="helo";
 	let jobTitle="";
 	let description="";
 	let userImage="https://source.unsplash.com/random";
     let formState='empty';
 	let createdContact=[];
 	function addContact(){
-		if(userName.trim().length==0 ||
+		if(
+        userName.trim().length==0 ||
 		jobTitle.trim().length==0 ||
 		userImage.trim().length==0 ||
 		description.trim().length==0
@@ -18,14 +19,23 @@
 		createdContact= [
 			...createdContact,
 			{
+			id: Math.random(),
 			userName,
 			jobTitle,
 			userImage,
 			description
-		}];
-
-		formState='done';
 		}
+	   ];
+		formState="done";
+		}
+
+		function deleteFirst(){
+			createdContact = createdContact.slice(1);
+		}
+		function deleteLast(){
+			createdContact= createdContact.slice(0,-1);
+		}
+       
 </script>
 
 <div class="form">
@@ -38,15 +48,22 @@
 		<input type="text" bind:value={jobTitle} id="jobTitle" />
 	</div>
 	<div class="form-control">
-		<label for="image">Image URL</label>
+		<label for="image">Image</label>
 		<input type="text" bind:value={userImage} id="image" />
 	</div>
 	<div class="form-control">
 		<label for="desc">Description</label>
 		<textarea rows="3" bind:value={description} id="desc" />
 	</div>
+	<div class="form-control">
+		<label for="image">Image</label>
+		<input type="text" bind:value={userImage} id="image" />
+	</div>
+	
 </div>
 <button on:click="{addContact}">Add contact card</button>
+<button on:click="{deleteFirst}">Delete First</button>
+<button on:click="{deleteLast}">Delete Last</button>
 
 
 {#if formState==="invalid"}
@@ -54,7 +71,7 @@
 {:else}
 <p>Please fill all the fields and submit!</p>
 {/if}
-{#each createdContact as contact,i}
+{#each createdContact as contact,i (contact.id)}
 <h2># {i+1}</h2>
 <!-- <ContactCard userName={contact.userName} 
 jobTitle={contact.title} 
