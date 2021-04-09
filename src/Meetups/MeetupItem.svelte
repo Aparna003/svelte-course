@@ -1,15 +1,19 @@
 
 <script>
-import { bubble } from 'svelte/internal';
-
     import Button from '../UI/Button.svelte';
-
+    import {createEventDispatcher} from 'svelte';
+    import Badge from '../UI/Badge.svelte';
+    export let id;
     export let title;
     export let subtitle;
     export let imageUrl;
     export let description;
     export let email;
     export let address;
+    export let isFav;
+
+    const dispatch  = createEventDispatcher();
+   
 </script>
 
 <style>
@@ -51,11 +55,18 @@ import { bubble } from 'svelte/internal';
     div{
         text-align: right;
     }
+    .content{
+        height:4rem;
+    }
 </style>
 
 <article>
     <header>
-    <h1>{title}</h1>
+    <h1>{title}
+        {#if isFav}
+    <Badge>FAVORITE</Badge>
+    {/if}
+    </h1>
         <h2>{subtitle}</h2>
         <p>{address}</p>
     </header>
@@ -64,12 +75,13 @@ import { bubble } from 'svelte/internal';
     </div>
     <div class="content">
         <p>{description}</p>
-    </div>
+    </div>    
     <footer>
-        
         <!-- <a href="mailto:{email}">Contact</a> -->
-        <Button type="button" href="mailto:{email}" caption="Contact mail" />
-        <Button type="button" caption="Show details" />
-        <Button type="button" caption="favourites" />
+        <Button type="button" href="mailto:{email}">Contact mail </Button>
+        <Button type="button"  mode="outline"
+         color={isFav ? null:"success"}  
+         on:click="{()=> dispatch('toggle-favorite',id)}" >{isFav ? 'Unfavorite' :'Favorite'}</Button>
+        <Button  type="button" >Show details</Button> 
     </footer>
 </article>

@@ -1,8 +1,10 @@
 <script>
-   export let type;
-   export let caption;
-   export let href;
-   export let mode;
+ 
+   export let type="button"; 
+   export let href = null;
+   export let mode = null;
+   export let color = null;
+
 </script>
 <style>
     button,
@@ -37,10 +39,48 @@
         box-shadow:  none;
         cursor: not-allowed;
     }
+    .success{
+        background: #01a129;
+        border-color: #01a129;
+    }
+    .success:hover,
+    .success:active{
+        background: #01a129;
+        border-color:#01a129;
+    }
+    .outline{
+        background: transparent;
+        color:#cf0056;
+        box-shadow: none;
+    }
+    .outline:hover,
+    .outline:active{
+      background: #ffc7de;
+        box-shadow: none;
+    }
+    .outline:disabled,
+    .outline:disabled:hover,
+    .outline:disabled:active{
+        background: transparent;
+        color:#ccc;
+    }
+    .outline.success{
+        border-color:#01a129;
+        color: #01a129;
+    }  
+    .outline.success:hover,
+    .outline.success:active{
+        background: #c2ffd1;
+    }
 </style>
 
 {#if href}
-<a href={href} >{caption}</a>
+<a {href} >
+    <slot />
+</a>
 {:else}
-<button class="{mode}" type="{type}">{caption}</button>
+<!-- event forwarding  -->
+<button  class="{mode} {color}" {type}  on:click>
+    <slot />
+</button>
 {/if}
