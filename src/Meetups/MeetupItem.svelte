@@ -78,10 +78,10 @@
     </div>    
     <footer>
         <!-- <a href="mailto:{email}">Contact</a> -->
-        <Button type="button" href="mailto:{email}" caption="Contact mail" />
-        <Button type="button" caption="{isFav ? 'Unfavorite' :'Favorite'}"  mode="outline"
-        color={isFav ?null:"success"} 
-        on:click="{()=> dispatch('toggle-favorite',id)}" />
-        <Button  type="button" caption="Show details" />
+        <Button type="button" href="mailto:{email}">Contact mail </Button>
+        <Button type="button"  mode="outline"
+         color={isFav ? null:"success"}  
+         on:click="{()=> dispatch('toggle-favorite',id)}" >{isFav ? 'Unfavorite' :'Favorite'}</Button>
+        <Button  type="button" >Show details</Button> 
     </footer>
 </article>
