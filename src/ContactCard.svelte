@@ -3,6 +3,7 @@
     export let jobTitle;
     export let description;
     export let userImage;
+
     const initialName= userName;
 </script>
 
@@ -36,7 +37,6 @@ img{
 .user-data{
     width: 80%;
     display: flex;
-    padding-left: 1rem;
     flex-direction: column;
     justify-content: center;
 }
