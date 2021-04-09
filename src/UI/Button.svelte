@@ -4,9 +4,8 @@
    export let caption;
    export let href = null;
    export let mode = null;
-   
+   export let color = null;
 
-   
 </script>
 <style>
     button,
@@ -41,6 +40,20 @@
         box-shadow:  none;
         cursor: not-allowed;
     }
+    .success{
+        background: #01a129;
+        border-color: #01a129;
+    }
+    .success:hover,
+    .success:active{
+        background: #01a129;
+        border-color:#01a129;
+    }
+    .outline{
+        background: transparent;
+        color:#cf0056;
+        box-shadow: none;
+    }
     .outline:hover,
     .outline:active{
       background: #ffc7de;
@@ -66,5 +79,5 @@
 <a href={href} >{caption}</a>
 {:else}
 <!-- event forwarding  -->
-<button  class="{mode}" {type}  on:click>{caption}</button>
+<button  class="{mode} {color}" {type}  on:click>{caption}</button>
 {/if}
